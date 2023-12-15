@@ -1,38 +1,331 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+body,
+* {
+  font-family: "Inter", sans-serif;
+
+  --skyblue: #0aa5e5;
+  --light-gray: #eeeeee;
+  --dark-gray: #808080;
+  --red: #dc143c;
+  --white: #ffffff;
+  --black: #000000;
+
+  --primary-text: var(--white);
+  --primary-bg: var(--skyblue);
+  --primary-border: var(--dark-gray);
+  --primary-outline: var(--dark-gray);
+  --primary-outline-focused: var(--skyblue);
+  --primary-btn-outline: var(--skyblue);
+
+  --secondary-text: var(--skyblue);
+  --secondary-bg: var(--white);
+  --secondary-border: var(--light-gray);
+  --secondary-btn-outline: var(--skyblue);
+
+  --disabled-text: var(--dark-gray);
+  --disabled-bg: var(--light-gray);
+  --disabled-outline: var(--light-gray);
+
+  --danger-text: var(--red);
+  --danger-btn-text: var(--white);
+  --danger-outline: var(--red);
+  --danger-bg: var(--red);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* App container */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container {
+  /* width: 100vw; */
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem 0rem;
+  position: relative;
+}
+
+/* header */
+
+.header {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 3.2rem;
+  width: 100%;
+  text-align: center;
+  color: var(--primary-text);
+  background-color: var(--primary-bg);
 }
 
-.App-link {
-  color: #61dafb;
+.header-heading {
+  font-size: 1.3rem;
+  margin: 0 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* searchbar */
+
+.searchbar-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.searchbar-input {
+  width: 60%;
+  padding: 0.5rem 0.5rem;
+  border: none;
+  outline: 1px solid var(--primary-outline);
+  border-radius: 5px;
+}
+
+.searchbar-input:focus {
+  border: none;
+  outline: 2px solid var(--primary-outline-focused);
+}
+
+/* Admin Table */
+
+.admintable-inner-wrapper {
+  /* for responsiveness */
+  min-height: 67.3vh;
+  width: 90vw;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  min-height: 0;
+}
+
+.admintable {
+  border-spacing: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+tr th {
+  text-align: start;
+  border-bottom: 1px solid var(--primary-border);
+  padding: 1rem 1rem;
+}
+
+tr td {
+  text-wrap: nowrap;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--secondary-border);
+}
+
+tr td:nth-child(2),
+tr td:nth-child(3),
+tr td:nth-child(4) {
+  width: 25%;
+}
+
+tr td:nth-child(4)::first-letter {
+  text-transform: capitalize;
+}
+
+.tablerow-action-btns {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tablerow-btn {
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.tablerow.selected {
+  background-color: var(--disabled-bg);
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* Edit row  */
+
+.tablerow-input {
+  border: none;
+  outline: 0.5px solid var(--primary-outline);
+  border-radius: 5px;
+  padding: 0.2rem 0.2rem;
+}
+
+.tablerow-input:focus {
+  border: none;
+  outline: 2px solid var(--primary-outline-focused);
+}
+
+.icon {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.icon-save {
+  color: var(--primary-bg);
+}
+
+.icon-delete {
+  color: var(--danger-bg);
+}
+
+/* Alert Component */
+
+.alert-container {
+  width: 90vw;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+
+.alert-container,
+.alert-loading-wrapper,
+.alert-text {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.alert-loading-wrapper {
+  gap: 0.5rem;
+}
+
+.alert-text {
+  font-size: 2rem;
+  color: var(--disabled-text);
+}
+
+.error {
+  color: var(--danger-text);
+}
+
+/* delete-selected-action-container */
+
+.delete-selected-action-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected-rows-count-text {
+  text-align: center;
+}
+
+/* Delete Selected Button */
+
+.btn-delete-selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--danger-btn-text);
+  padding: 0.5rem 0.5rem;
+  background-color: var(--danger-bg);
+  cursor: pointer;
+  border: none;
+  outline: 1px solid var(--danger-outline);
+  border-radius: 5px;
+}
+
+.btn-delete-selected:disabled {
+  color: var(--disabled-text);
+  background-color: var(--disabled-bg);
+  border: none;
+  outline: 1px solid var(--disabled-outline);
+}
+.btn-delete-selected:disabled:hover {
+  cursor: not-allowed;
+}
+
+/* pagination */
+
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0rem;
+  min-height: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.page-btn,
+.page-btn-skip {
+  color: var(--secondary-text);
+  background-color: var(--secondary-bg);
+  border: none;
+  outline: 1px solid var(--secondary-btn-outline);
+  border-radius: 5px;
+  padding: 0.3rem 0.8rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.page-btn:hover,
+.page-btn-skip:hover:not(:disabled),
+.active {
+  color: var(--primary-text);
+  background-color: var(--primary-bg);
+}
+
+.page-btn-skip:disabled {
+  color: var(--disabled-text);
+  border: none;
+  outline: 1px solid var(--disabled-outline);
+  background-color: var(--disabled-bg);
+  cursor: not-allowed;
+}
+
+/* footer */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  color: var(--disabled-text);
+  width: 100%;
+  text-align: center;
+  background-color: var(--disabled-bg);
+}
+
+.footer-text {
+  margin: 0 0;
+}
+.footer-text a {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .alert-text {
+    font-size: 1rem;
   }
 }
